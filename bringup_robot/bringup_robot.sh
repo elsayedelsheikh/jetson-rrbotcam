@@ -1,1 +1,0 @@
-docker run -it --rm --network host --name rrbotcam_bringup --device /dev/ttyUSB0 jetson-rrbotcam-control ros2 launch rrbot_cam rrbot.launch.py
