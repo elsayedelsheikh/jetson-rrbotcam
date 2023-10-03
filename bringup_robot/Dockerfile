@@ -1,6 +1,6 @@
 ARG ROS_DISTRO="humble"
-ARG BRANCH="humble"
 FROM ros:$ROS_DISTRO
+ARG BRANCH="humble"
 
 ENV ROS_UNDERLAY /root/ws_ros2_control/install
 WORKDIR $ROS_UNDERLAY/../src
