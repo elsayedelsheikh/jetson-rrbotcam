@@ -4,3 +4,6 @@
 [submodule "bringup_robot/rrbot_cam"]
 	path = bringup_robot/rrbot_cam
 	url = https://github.com/elsayedelsheikh/rrbot_cam.git
+[submodule "bringup_robot/ros_arduino_bridge"]
+	path = bringup_robot/ros_arduino_bridge
+	url = https://github.com/elsayedelsheikh/ros_arduino_bridge.git
