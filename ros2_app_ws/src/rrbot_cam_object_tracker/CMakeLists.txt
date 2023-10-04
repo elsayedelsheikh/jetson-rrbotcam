@@ -16,6 +16,7 @@ find_package(vision_msgs REQUIRED)
 # find_package(control_msgs REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(cv_bridge REQUIRED)
+find_package(OpenCV REQUIRED)
 
 set (dependencies
   rclcpp
@@ -27,6 +28,7 @@ set (dependencies
   # control_msgs
   image_transport
   cv_bridge
+  OpenCV
 )
 
 include_directories(include)

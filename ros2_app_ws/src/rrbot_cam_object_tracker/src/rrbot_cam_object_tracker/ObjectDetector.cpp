@@ -9,7 +9,7 @@ ObjectDetector::ObjectDetector() : Node("object_detector") {
   declare_parameter("hsv_ranges", hsv_ranges_);
   declare_parameter("debug", debug_);
 
-  get_parameter("hsv_rangs", hsv_ranges_);
+  get_parameter("hsv_ranges", hsv_ranges_);
   get_parameter("debug", debug_);
 
   debug_img_pub_it_ = image_transport::create_publisher(this, "debug_image");
@@ -77,8 +77,8 @@ void ObjectDetector::image_callback(
     debug_img_pub_it_.publish(cv_ptr->toImageMsg());
 
     // Show image window
-    cv::imshow("cv_ptr->image", cv_ptr->image);
-    cv::waitKey(1);
+    // cv::imshow("cv_ptr->image", cv_ptr->image);
+    // cv::waitKey(1);
   }
 }
 
