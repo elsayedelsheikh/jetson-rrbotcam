@@ -13,7 +13,7 @@ find_package(rrbot_cam_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(vision_msgs REQUIRED)
-find_package(control_msgs REQUIRED)
+# find_package(control_msgs REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(cv_bridge REQUIRED)
 
@@ -24,7 +24,7 @@ set (dependencies
   geometry_msgs
   sensor_msgs
   vision_msgs
-  control_msgs
+  # control_msgs
   image_transport
   cv_bridge
 )

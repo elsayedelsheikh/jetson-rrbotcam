@@ -14,6 +14,7 @@ Output: Detected object (vision_msgs/Detection2D)
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/image.hpp"
 #include "vision_msgs/msg/detection2_d.hpp"
+#include "image_transport/image_transport.hpp"
 
 namespace rrbot_cam_object_tracker {
 
@@ -22,9 +23,11 @@ class ObjectDetector : public rclcpp::Node {
   ObjectDetector();
 
  private:
-  rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_;
+  rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_; // Raw image subscriber
   rclcpp::Publisher<vision_msgs::msg::Detection2D>::SharedPtr
       detected_object_pub_;
+  image_transport::Publisher debug_img_pub_it_;
+
   void image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &msg);
 
   // HSV color range for object detection

@@ -18,6 +18,8 @@ ObjectDetector::ObjectDetector() : Node("object_detector") {
 
   detected_object_pub_ = this->create_publisher<vision_msgs::msg::Detection2D>(
       "output_detection", 10);
+  
+  debug_img_pub_it_ = image_transport::create_publisher(this, "debug_image");
 }
 
 void ObjectDetector::image_callback(
@@ -67,6 +69,17 @@ void ObjectDetector::image_callback(
   detection_msg.bbox.center.position.y = cy;
 
   detected_object_pub_->publish(detection_msg);
+
+  if (debug_){
+    cv::rectangle(cv_ptr->image, bbox, cv::Scalar(0, 0, 255), 3);
+    cv::circle(cv_ptr->image, cv::Point(cx, cy), 3, cv::Scalar(255, 0, 0), 3);
+
+    debug_img_pub_it_.publish(cv_ptr->toImageMsg());
+
+    // // Show image window
+    // cv::imshow("cv_ptr->image", cv_ptr->image);
+    // cv::waitKey(1);
+  }
 }
 
 }  // namespace rrbot_cam_object_tracker
