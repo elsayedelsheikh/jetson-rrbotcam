@@ -12,20 +12,20 @@ ObjectDetector::ObjectDetector() : Node("object_detector") {
   get_parameter("hsv_rangs", hsv_ranges_);
   get_parameter("debug", debug_);
 
-  image_sub_ = this->create_subscription<sensor_msgs::msg::Image>(
-      "input_image", rclcpp::SensorDataQoS(),
-      std::bind(&ObjectDetector::image_callback, this, std::placeholders::_1));
+  debug_img_pub_it_ = image_transport::create_publisher(this, "debug_image");
+
+  image_sub_ = image_transport::create_subscription(
+    this, "input_image", std::bind(&ObjectDetector::image_callback, this, std::placeholders::_1),
+    "raw", rclcpp::SensorDataQoS().get_rmw_qos_profile());
 
   detected_object_pub_ = this->create_publisher<vision_msgs::msg::Detection2D>(
       "output_detection", 10);
-  
-  debug_img_pub_it_ = image_transport::create_publisher(this, "debug_image");
 }
 
 void ObjectDetector::image_callback(
     const sensor_msgs::msg::Image::ConstSharedPtr &img) {
   // Check if there's any subscribers on output_detection topic
-  if (detected_object_pub_->get_subscription_count() == 0) return;
+  // if (detected_object_pub_->get_subscription_count() == 0) return;
 
   const double &h = hsv_ranges_[0];
   const double &H = hsv_ranges_[1];

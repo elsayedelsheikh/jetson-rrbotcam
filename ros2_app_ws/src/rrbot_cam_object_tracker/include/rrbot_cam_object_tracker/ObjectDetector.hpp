@@ -23,10 +23,10 @@ class ObjectDetector : public rclcpp::Node {
   ObjectDetector();
 
  private:
-  rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_; // Raw image subscriber
+  image_transport::Publisher debug_img_pub_it_;
+  image_transport::Subscriber image_sub_;
   rclcpp::Publisher<vision_msgs::msg::Detection2D>::SharedPtr
       detected_object_pub_;
-  image_transport::Publisher debug_img_pub_it_;
 
   void image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &msg);
 
