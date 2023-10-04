@@ -11,8 +11,8 @@ Arduino communication through USB-Serial port
 Custom Hardware interface to control 2x Servos positions (Command & State interface)
 ## Computer vision
 Different Computer vision applications that order the joints to follow any specific item using PID controller
-* Certain color using HSV-color range node
-* Detection of wide range of classes with different models from jetson-inference nodes
+* Certain color using HSV-color range
+* Deeplearning to detect wide range of classes with different models from jetson-inference
 ## Future work
 * Create Background Removal and follower node
   
