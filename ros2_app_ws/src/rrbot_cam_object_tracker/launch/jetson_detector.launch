@@ -4,11 +4,11 @@
 	<arg name="input" default="csi://0"/>
 	<arg name="input_width" default="1280"/>
 	<arg name="input_height" default="720"/>
-	<arg name="framerate" default="60"/>
+	<arg name="input_framerate" default="120"/>
 	<arg name="input_codec" default="unknown"/>
 	<arg name="input_loop" default="0"/>
 	<arg name="input_latency" default="2000"/>
-	<arg name="flip" default="4"/>
+	<arg name="input_flip" default="horizontal-flip"/>
 	
 	<node pkg="ros_deep_learning" exec="video_source" output="screen">
 		<param name="resource" value="$(var input)"/>
@@ -17,6 +17,8 @@
 		<param name="codec" value="$(var input_codec)"/>
 		<param name="loop" value="$(var input_loop)"/>
 		<param name="latency" value="$(var input_latency)"/>
+		<param name="framerate" value="$(var input_framerate)"/>
+		<param name="flip" value="$(var input_flip)"/>
 	</node>
 
     <!-- DETECTOR -->
