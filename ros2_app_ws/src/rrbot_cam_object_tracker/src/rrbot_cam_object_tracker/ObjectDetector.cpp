@@ -76,9 +76,9 @@ void ObjectDetector::image_callback(
 
     debug_img_pub_it_.publish(cv_ptr->toImageMsg());
 
-    // // Show image window
-    // cv::imshow("cv_ptr->image", cv_ptr->image);
-    // cv::waitKey(1);
+    // Show image window
+    cv::imshow("cv_ptr->image", cv_ptr->image);
+    cv::waitKey(1);
   }
 }
 
