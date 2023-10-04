@@ -1,0 +1,10 @@
+/object_detector:
+  ros__parameters:
+    debug: false
+    hsv_ranges:
+      - 90.0
+      - 128.0
+      - 50.0
+      - 255.0
+      - 70.0
+      - 255.0
