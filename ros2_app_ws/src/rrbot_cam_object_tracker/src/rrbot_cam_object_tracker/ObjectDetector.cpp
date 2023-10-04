@@ -12,6 +12,14 @@ ObjectDetector::ObjectDetector() : Node("object_detector") {
   get_parameter("hsv_ranges", hsv_ranges_);
   get_parameter("debug", debug_);
 
+  if (debug_) {
+    RCLCPP_INFO(get_logger(), "Debug mode is on");
+    RCLCPP_INFO(get_logger(), "HSV ranges to be detected: ");
+    RCLCPP_INFO(get_logger(), "h: %f - %f", hsv_ranges_[0], hsv_ranges_[1]);
+    RCLCPP_INFO(get_logger(), "s: %f - %f", hsv_ranges_[2], hsv_ranges_[3]);
+    RCLCPP_INFO(get_logger(), "v: %f - %f", hsv_ranges_[4], hsv_ranges_[5]);
+  }
+
   debug_img_pub_it_ = image_transport::create_publisher(this, "debug_image");
 
   image_sub_ = image_transport::create_subscription(

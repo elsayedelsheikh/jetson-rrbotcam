@@ -31,8 +31,7 @@ def generate_launch_description():
     object_detector_cmd = Node(
         package='rrbot_cam_object_tracker',
         executable='object_detector',
-        parameters=[{
-          'use_sim_time': False}, params_file],
+        parameters=[{'use_sim_time': False}, params_file],
         remappings=[
           ('input_image', '/video_source/raw'),
         ],
