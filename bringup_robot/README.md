@@ -1,5 +1,8 @@
 # bringup_robot
 ## Setup
+### Arduino
+You need to upload the sketch in ros_arduino_bridge/ROSArduinoBridge/ROSArduinoBridge.ino to the arduino
+### Docker
 You don't need to build the image you can pull it directly on your jetson nano from docker hub
 ``` bash
 docker pull elsayedelsheikh/jetson-rrbotcam-bringup-robot:latest
