@@ -3,7 +3,7 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "rrbot_cam_msgs/msg/pan_tilt_command.hpp"
-#include "vision_msgs/msg/detection2_d.hpp"
+#include "vision_msgs/msg/detection2_d_array.hpp"
 
 namespace rrbot_cam_object_follower {
 
@@ -12,12 +12,12 @@ class ObjectFollower : public rclcpp::Node {
   ObjectFollower();
 
  private:
-  rclcpp::Subscription<vision_msgs::msg::Detection2D>::SharedPtr
+  rclcpp::Subscription<vision_msgs::msg::Detection2DArray>::SharedPtr
       detected_object_sub_;
   rclcpp::Publisher<rrbot_cam_msgs::msg::PanTiltCommand>::SharedPtr
       command_pub_;
   void detected_object_cb(
-      const vision_msgs::msg::Detection2D::ConstSharedPtr &msg);
+      const vision_msgs::msg::Detection2DArray::ConstSharedPtr &msg);
   int IMG_WIDTH;
   int IMG_HEIGHT;
 };
