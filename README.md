@@ -42,12 +42,11 @@ Multiple detectors are available:
 ``` bash
 cd ~/jetson-inference
 docker/run.sh --ros humble -v ~/jetson-rrbotcam/object_detector_follower:/object_detector_follower/
-cd object_detector_follower && colcon build --symlink-install
+cd /object_detector_follower && colcon build --symlink-install
 source /object_detector_follower/install/setup.bash
 ros2 launch rrbot_cam_object_follower object_follower.launch.py
-ros2 launch rrbot_cam_object_detector jetson_detector.launch use_net:=true
+ros2 launch rrbot_cam_object_detector jetson_detector.launch use_net:=false
 
 ```
 
-docker exec -it optimistic_benz /bin/bash
-source object_detector_follower/install/setup.bash
+docker exec -it friendly_solomon /bin/bash
