@@ -22,7 +22,7 @@
 	</node>
 
     <!-- DETECTOR -->
-    <include file="$(find-pkg-share rrbot_cam_object_tracker)/launch/detector.launch.py"/>
+    <include file="$(find-pkg-share rrbot_cam_object_detector)/launch/detector.launch.py"/>
 
 	<!-- VIDEO OUTPUT -->
 	<include file="$(find-pkg-share ros_deep_learning)/launch/video_output.ros2.launch">

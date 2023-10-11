@@ -1,9 +1,9 @@
-#include "rrbot_cam_object_tracker/ObjectDetector.hpp"
+#include "rrbot_cam_object_detector/ObjectDetector.hpp"
 
 #include "cv_bridge/cv_bridge.h"
 #include "opencv2/opencv.hpp"
 
-namespace rrbot_cam_object_tracker {
+namespace rrbot_cam_object_detector {
 
 ObjectDetector::ObjectDetector() : Node("object_detector") {
   declare_parameter("hsv_ranges", hsv_ranges_);
@@ -90,4 +90,4 @@ void ObjectDetector::image_callback(
   }
 }
 
-}  // namespace rrbot_cam_object_tracker
+}  // namespace rrbot_cam_object_detector

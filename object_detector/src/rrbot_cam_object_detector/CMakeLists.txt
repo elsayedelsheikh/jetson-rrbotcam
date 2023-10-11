@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(rrbot_cam_object_tracker)
+project(rrbot_cam_object_detector)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -25,7 +25,6 @@ set (dependencies
   geometry_msgs
   sensor_msgs
   vision_msgs
-  # control_msgs
   image_transport
   cv_bridge
   OpenCV
@@ -36,7 +35,7 @@ include_directories(include)
 add_library(
   ${PROJECT_NAME}
   SHARED
-  src/rrbot_cam_object_tracker/ObjectDetector.cpp
+  src/rrbot_cam_object_detector/ObjectDetector.cpp
 )
 
 ament_target_dependencies(${PROJECT_NAME} ${dependencies})

@@ -23,13 +23,13 @@ from launch_ros.actions import Node
 def generate_launch_description():
 
     params_file = os.path.join(
-        get_package_share_directory('rrbot_cam_object_tracker'),
+        get_package_share_directory('rrbot_cam_object_detector'),
         'config',
         'object_detection.yaml'
         )
 
     object_detector_cmd = Node(
-        package='rrbot_cam_object_tracker',
+        package='rrbot_cam_object_detector',
         executable='object_detector',
         parameters=[{'use_sim_time': False}, params_file],
         remappings=[

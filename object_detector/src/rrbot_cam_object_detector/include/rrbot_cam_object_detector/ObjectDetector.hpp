@@ -8,15 +8,15 @@ Output: Detected object (vision_msgs/Detection2D)
         size [size_x, size_y]
 */
 
-#ifndef RRBOT_CAM_OBJECT_TRACKER__OBJECT_DETECTOR_HPP_
-#define RRBOT_CAM_OBJECT_TRACKER__OBJECT_DETECTOR_HPP_
+#ifndef RRBOT_CAM_OBJECT_DETECTOR_HPP_
+#define RRBOT_CAM_OBJECT_DETECTOR_HPP_
 
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/image.hpp"
 #include "vision_msgs/msg/detection2_d.hpp"
 #include "image_transport/image_transport.hpp"
 
-namespace rrbot_cam_object_tracker {
+namespace rrbot_cam_object_detector {
 
 class ObjectDetector : public rclcpp::Node {
  public:
@@ -35,6 +35,6 @@ class ObjectDetector : public rclcpp::Node {
   bool debug_{false};
 };
 
-}  // namespace rrbot_cam_object_tracker
+}  // namespace rrbot_cam_object_detector
 
-#endif  // RRBOT_CAM_OBJECT_TRACKER__OBJECT_DETECTOR_HPP_
+#endif  // RRBOT_CAM_OBJECT_DETECTOR_HPP_
