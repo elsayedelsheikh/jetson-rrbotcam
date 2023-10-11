@@ -3,7 +3,6 @@
 
 	<!-- Detection Type -->
 	<arg name="use_net"  default="true"/>
-	<arg name="show_detection" default="true"/>
 	<let name="detection_topic" value="/detectnet/overlay" if="$(var use_net)"/>
 	<let name="detection_topic" value="/debug_image" unless="$(var use_net)"/>
 
@@ -29,15 +28,15 @@
 	</node>
 
     <!-- Detectnet -->
-    <include file="$(find-pkg-share rrbot_cam_object_detector)/launch/detect_net.launch" if="$(arg use_net)"/>
+    <include file="$(find-pkg-share rrbot_cam_object_detector)/launch/detect_net.launch" if="$(var use_net)"/>
     
 	<!-- HSV DETECTOR -->
-    <include file="$(find-pkg-share rrbot_cam_object_detector)/launch/detector.launch.py" unless="$(arg use_net)" />
+    <include file="$(find-pkg-share rrbot_cam_object_detector)/launch/detect_hsv.launch.py" unless="$(var use_net)" />
 
 	<!-- VIDEO OUTPUT -->
 	<include file="$(find-pkg-share ros_deep_learning)/launch/video_output.ros2.launch">
-		<arg name="topic" value="$(var detection_topic)" if="$(arg show_detection)"/>
-		<arg name="topic" value="/video_source/raw" unless="$(arg show_detection)"/>
+		<arg name="topic" value="$(var detection_topic)"/>
+		<!-- <arg name="topic" value="/video_source/raw"/> -->
         <arg name="output" value="webrtc://@:8554/output"/>
 	</include>
 
