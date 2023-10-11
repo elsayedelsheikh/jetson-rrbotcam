@@ -5,11 +5,11 @@ import numpy as np
 dispW=640
 dispH=480
 flip=2
-# camSet='nvarguscamerasrc !  video/x-raw(memory:NVMM), width=3264, height=2464, format=NV12, framerate=21/1 ! nvvidconv flip-method='+str(flip)+' ! video/x-raw, width='+str(dispW)+', height='+str(dispH)+', format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink'
-# cam= cv2.VideoCapture(camSet)
+camSet='nvarguscamerasrc !  video/x-raw(memory:NVMM), width=3264, height=2464, format=NV12, framerate=21/1 ! nvvidconv flip-method='+str(flip)+' ! video/x-raw, width='+str(dispW)+', height='+str(dispH)+', format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink'
+cam= cv2.VideoCapture(camSet)
 
 #Or, if you have a WEB cam, uncomment the next line
-cam=cv2.VideoCapture(0)
+# cam=cv2.VideoCapture(0)
 
 ## Windows
 cv2.namedWindow("cameraFeed")
