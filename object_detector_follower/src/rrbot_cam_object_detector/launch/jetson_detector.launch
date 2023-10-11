@@ -2,9 +2,9 @@
 <launch>
 	<!-- VIDEO SOURCE -->
 	<arg name="input" default="csi://0"/>
-	<arg name="input_width" default="1280"/>
-	<arg name="input_height" default="720"/>
-	<arg name="input_framerate" default="120"/>
+	<arg name="input_width" default="640"/>
+	<arg name="input_height" default="480"/>
+	<arg name="input_framerate" default="60.0"/>
 	<arg name="input_codec" default="unknown"/>
 	<arg name="input_loop" default="0"/>
 	<arg name="input_latency" default="2000"/>
@@ -21,14 +21,29 @@
 		<param name="flip" value="$(var input_flip)"/>
 	</node>
 
-    <!-- DETECTOR -->
-    <include file="$(find-pkg-share rrbot_cam_object_detector)/launch/detector.launch.py"/>
+	<!-- VIDEO OUTPUT -->
+	<!-- <include file="$(find-pkg-share ros_deep_learning)/launch/video_output.ros2.launch">
+		<arg name="topic" value="/video_source/raw"/>
+        <arg name="output" value="webrtc://@:8554/output"/>
+	</include> -->
+
+
+    <!-- HSV DETECTOR -->
+    <!-- <include file="$(find-pkg-share rrbot_cam_object_detector)/launch/detector.launch.py"/> -->
+   
+	<!-- VIDEO OUTPUT -->
+	<!-- <include file="$(find-pkg-share ros_deep_learning)/launch/video_output.ros2.launch">
+		<arg name="topic" value="/debug_image"/>
+        <arg name="output" value="webrtc://@:8554/output"/>
+ 	</include> -->
+
+    <!-- Detectnet -->
+    <include file="$(find-pkg-share rrbot_cam_object_detector)/launch/detect_net.launch"/>
 
 	<!-- VIDEO OUTPUT -->
 	<include file="$(find-pkg-share ros_deep_learning)/launch/video_output.ros2.launch">
-		<arg name="topic" value="/debug_image"/>
-		<arg name="output_bitrate" value="0"/>
+		<arg name="topic" value="/detectnet/overlay"/>
         <arg name="output" value="webrtc://@:8554/output"/>
- 	</include>
+	</include>
 
 </launch>

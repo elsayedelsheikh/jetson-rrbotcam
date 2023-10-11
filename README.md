@@ -35,4 +35,15 @@ Multiple detectors are available:
 ``` bash
 ./bringup_robot/bringup.sh
 ```
-###
+
+### Start Object Tracking
+
+``` bash
+cd ~/jetson-inference
+docker/run.sh --ros humble -v ~/jetson-rrbotcam/object_detector_follower:/object_detector_follower/
+cd object_detector_follower && colcon build --symlink-install
+source install/setup.bash
+
+```
+docker exec -it great_taussig /bin/bash
+source object_detector_follower/install/setup.bash

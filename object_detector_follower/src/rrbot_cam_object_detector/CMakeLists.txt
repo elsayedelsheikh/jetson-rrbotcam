@@ -18,7 +18,6 @@ find_package(OpenCV REQUIRED)
 
 set (dependencies
   rclcpp
-  rclcpp_lifecycle
   rrbot_cam_msgs
   geometry_msgs
   sensor_msgs
