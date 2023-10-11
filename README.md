@@ -29,4 +29,10 @@ Multiple detectors are available:
 * detectnet node to detect a specific object using deep learning models (SSD-Mobilenet by default) from [jetson-inference](https://github.com/dusty-nv/jetson-inference)
 ### Future work
 * Track a person while removing the background
-  
+
+## RUN
+### Start ros2_control (robot_bringup)
+``` bash
+./bringup_robot/bringup.sh
+```
+###
