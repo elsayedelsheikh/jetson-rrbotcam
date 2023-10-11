@@ -11,8 +11,8 @@ def generate_launch_description():
                         'image_width': 640,
                         'image_height': 480,
                       }],
+                      # remappings=[('/detection', '/detectnet/detections')],
                       )
-
     ld = LaunchDescription()
     ld.add_action(bumpgo_cmd)
 

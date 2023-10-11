@@ -20,7 +20,6 @@ def generate_launch_description():
         parameters=[{'use_sim_time': False}, params_file],
         remappings=[
           ('input_image', '/video_source/raw'),
-          ('output_detection', 'detection')
         ],
         output='screen'
     )

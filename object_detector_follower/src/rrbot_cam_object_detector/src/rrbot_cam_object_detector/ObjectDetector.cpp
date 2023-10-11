@@ -26,14 +26,14 @@ ObjectDetector::ObjectDetector() : Node("object_detector") {
     this, "input_image", std::bind(&ObjectDetector::image_callback, this, std::placeholders::_1),
     "raw", rclcpp::SensorDataQoS().get_rmw_qos_profile());
 
-  detected_object_pub_ = this->create_publisher<vision_msgs::msg::Detection2D>(
-      "output_detection", 10);
+  detected_object_pub_ = this->create_publisher<vision_msgs::msg::Detection2DArray>(
+      "detection", 10);
 }
 
 void ObjectDetector::image_callback(
     const sensor_msgs::msg::Image::ConstSharedPtr &img) {
   // Check if there's any subscribers on output_detection topic
-  // if (detected_object_pub_->get_subscription_count() == 0) return;
+  if (detected_object_pub_->get_subscription_count() == 0) return;
 
   const double &h = hsv_ranges_[0];
   const double &H = hsv_ranges_[1];
@@ -69,6 +69,7 @@ void ObjectDetector::image_callback(
   int cy = m.m01 / m.m00;
 
   // Publish the message
+  vision_msgs::msg::Detection2DArray detection_array_msg;
   vision_msgs::msg::Detection2D detection_msg;
   detection_msg.header = img->header;
   detection_msg.bbox.size_x = bbox.width;
@@ -76,7 +77,10 @@ void ObjectDetector::image_callback(
   detection_msg.bbox.center.position.x = cx;
   detection_msg.bbox.center.position.y = cy;
 
-  detected_object_pub_->publish(detection_msg);
+  detection_array_msg.header = img->header;
+  detection_array_msg.detections.push_back(detection_msg);
+
+  detected_object_pub_->publish(detection_array_msg);
 
   if (debug_){
     cv::rectangle(cv_ptr->image, bbox, cv::Scalar(0, 0, 255), 3);
