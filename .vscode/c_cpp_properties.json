@@ -1,0 +1,29 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/sayed/project/install/rrbot_cam_object_detector/include/**",
+        "/home/sayed/project/install/rrbot_cam_msgs/include/**",
+        "/home/sayed/project/install/rrbot_cam/include/**",
+        "/home/sayed/bookros2_ws/install/br2_tracking/include/**",
+        "/home/sayed/bookros2_ws/install/br2_tracking_msgs/include/**",
+        "/home/sayed/bookros2_ws/install/br2_bt_patrolling/include/**",
+        "/home/sayed/bookros2_ws/install/br2_bt_bumpgo/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/sayed/project/src/jetson-rrbotcam/object_detector_follower/src/rrbot_cam_object_detector/include/**",
+        "/home/sayed/project/src/jetson-rrbotcam/object_detector_follower/src/rrbot_cam_object_follower/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
