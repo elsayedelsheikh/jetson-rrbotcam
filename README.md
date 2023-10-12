@@ -47,7 +47,4 @@ source /object_detector_follower/install/setup.bash
 
 ros2 launch rrbot_cam_object_detector jetson_detector.launch
 ros2 launch rrbot_cam_object_follower object_follower.launch.py
-
 ```
-
-docker exec -it laughing_fermi /bin/bash
