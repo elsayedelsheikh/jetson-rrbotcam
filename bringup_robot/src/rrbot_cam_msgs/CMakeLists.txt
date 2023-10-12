@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(rrbot_cam_platform_controller)
+project(rrbot_cam_msgs)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -8,34 +8,14 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(rrbot_cam_msgs REQUIRED)
-find_package(vision_msgs REQUIRED)
+find_package(builtin_interfaces REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
 
-set(dependencies
-  rclcpp
-  rclcpp_lifecycle
-  rrbot_cam_msgs
-  control_msgs
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/PanTiltCommand.msg"
+  DEPENDENCIES builtin_interfaces  
 )
-
-include_directories(include)
-
-add_executable(platform_controller 
-  src/rrbot_cam_platform_controller/PIDController.cpp
-  src/rrbot_cam_platform_controller/PlatformController.cpp
-  src/controller_main.cpp
-)
-
-ament_target_dependencies(platform_controller ${dependencies})
-
-install(TARGETS
-  platform_controller
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION lib/${PROJECT_NAME}
-)
-
-install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -49,4 +29,5 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+ament_export_dependencies(rosidl_default_runtime)
 ament_package()
