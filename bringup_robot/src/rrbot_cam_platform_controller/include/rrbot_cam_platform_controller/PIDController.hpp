@@ -3,7 +3,7 @@
 
 #include <cmath>
 
-namespace rrbot_cam_platfrom_controller
+namespace rrbot_cam_platform_controller
 {
 
 class PIDController

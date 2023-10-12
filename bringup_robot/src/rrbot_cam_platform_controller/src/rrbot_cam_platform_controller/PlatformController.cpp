@@ -1,6 +1,6 @@
-#include "rrbot_cam_platfrom_controller/PlatformController.hpp"
+#include "rrbot_cam_platform_controller/PlatformController.hpp"
 
-namespace rrbot_cam_platfrom_controller {
+namespace rrbot_cam_platform_controller {
 
 PlatformController::PlatformController():
 LifecycleNode("platform_controller"),
@@ -121,4 +121,4 @@ PlatformController::control_cycle()
 }
 
 
-}  // namespace rrbot_cam_platfrom_controller
+}  // namespace rrbot_cam_platform_controller

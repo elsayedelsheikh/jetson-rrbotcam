@@ -1,7 +1,7 @@
 #include <algorithm>
-#include "rrbot_cam_platfrom_controller/PIDController.hpp"
+#include "rrbot_cam_platform_controller/PIDController.hpp"
 
-namespace rrbot_cam_platfrom_controller
+namespace rrbot_cam_platform_controller
 {
 
 PIDController::PIDController(double KP, double KI, double KD, double min_ref, double max_ref, double min_output, double max_output):

@@ -8,8 +8,9 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclcpp_lifecycle REQUIRED)
 find_package(rrbot_cam_msgs REQUIRED)
-find_package(vision_msgs REQUIRED)
+find_package(control_msgs REQUIRED)
 
 set(dependencies
   rclcpp

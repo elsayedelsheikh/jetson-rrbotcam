@@ -11,7 +11,7 @@
 #include "trajectory_msgs/msg/joint_trajectory.hpp"
 
 
-namespace rrbot_cam_platfrom_controller {
+namespace rrbot_cam_platform_controller {
 
 using CallbackReturn = rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn;
 
@@ -48,6 +48,6 @@ class PlatformController : public rclcpp_lifecycle::LifecycleNode {
     PIDController pan_pid_, tilt_pid_;
 };
 
-}  // namespace rrbot_cam_platfrom_controller
+}  // namespace rrbot_cam_platform_controller
 
 #endif  // RRBOT_CAM_PLATFORM_CONTROLLER_HPP_
