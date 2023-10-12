@@ -19,7 +19,7 @@ def generate_launch_description():
         executable='object_detector',
         parameters=[{'use_sim_time': False}, params_file],
         remappings=[
-          ('input_image', '/video_source/raw'),
+          ('/input_image', '/video_source/raw'),
         ],
         output='screen'
     )

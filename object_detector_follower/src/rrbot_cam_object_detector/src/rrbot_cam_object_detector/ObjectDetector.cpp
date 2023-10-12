@@ -22,9 +22,13 @@ ObjectDetector::ObjectDetector() : Node("object_detector") {
 
   debug_img_pub_it_ = image_transport::create_publisher(this, "debug_image");
 
-  image_sub_ = image_transport::create_subscription(
-    this, "input_image", std::bind(&ObjectDetector::image_callback, this, std::placeholders::_1),
-    "raw", rclcpp::SensorDataQoS().get_rmw_qos_profile());
+  // image_sub_ = image_transport::create_subscription(
+  //   this, "input_image", std::bind(&ObjectDetector::image_callback, this, std::placeholders::_1),
+  //   "raw", rclcpp::SensorDataQoS().get_rmw_qos_profile());
+
+  image_sub_ = this->create_subscription<sensor_msgs::msg::Image>(
+      "input_image", 5, 
+      std::bind(&ObjectDetector::image_callback, this, std::placeholders::_1));
 
   detected_object_pub_ = this->create_publisher<vision_msgs::msg::Detection2DArray>(
       "detection", 10);
@@ -33,7 +37,7 @@ ObjectDetector::ObjectDetector() : Node("object_detector") {
 void ObjectDetector::image_callback(
     const sensor_msgs::msg::Image::ConstSharedPtr &img) {
   // Check if there's any subscribers on output_detection topic
-  if (detected_object_pub_->get_subscription_count() == 0) return;
+  // if (detected_object_pub_->get_subscription_count() == 0) return;
 
   const double &h = hsv_ranges_[0];
   const double &H = hsv_ranges_[1];
@@ -67,6 +71,9 @@ void ObjectDetector::image_callback(
 
   int cx = m.m10 / m.m00;
   int cy = m.m01 / m.m00;
+  
+  if (debug_)
+    RCLCPP_INFO(get_logger(), "Detected object at (%d, %d)", cx, cy);
 
   // Publish the message
   vision_msgs::msg::Detection2DArray detection_array_msg;
@@ -85,12 +92,7 @@ void ObjectDetector::image_callback(
   if (debug_){
     cv::rectangle(cv_ptr->image, bbox, cv::Scalar(0, 0, 255), 3);
     cv::circle(cv_ptr->image, cv::Point(cx, cy), 3, cv::Scalar(255, 0, 0), 3);
-
     debug_img_pub_it_.publish(cv_ptr->toImageMsg());
-
-    // Show image window
-    // cv::imshow("cv_ptr->image", cv_ptr->image);
-    // cv::waitKey(1);
   }
 }
 

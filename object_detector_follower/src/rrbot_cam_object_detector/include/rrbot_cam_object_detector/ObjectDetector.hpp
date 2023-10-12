@@ -25,7 +25,8 @@ class ObjectDetector : public rclcpp::Node {
 
  private:
   image_transport::Publisher debug_img_pub_it_;
-  image_transport::Subscriber image_sub_;
+//   image_transport::Subscriber image_sub_;
+  rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_;
   rclcpp::Publisher<vision_msgs::msg::Detection2DArray>::SharedPtr
       detected_object_pub_;
 
