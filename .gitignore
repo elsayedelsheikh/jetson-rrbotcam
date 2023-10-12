@@ -1,1 +1,4 @@
-.vscode/settings.json
+./vscode/
+./object_detector_follower/build/
+./object_detector_follower/install/
+./object_detector_follower/log/
