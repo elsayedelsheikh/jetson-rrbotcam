@@ -14,5 +14,5 @@ If you're going to build the image on a jetson nano you need to copy the Dockerf
 * you need to have arduino connected to the jetson nano through USB-Serial port, in this case the arduino is connected to /dev/ttyUSB0 
 * It would start a container with the name rrbotcam_bringup_robot with network host and share the /dev/ttyUSB0 with the container in the background and it would be removed when you exit the container
 ``` bash
-./run.sh
+./bringup.sh
 ```

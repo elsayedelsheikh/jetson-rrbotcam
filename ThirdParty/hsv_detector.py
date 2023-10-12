@@ -4,8 +4,8 @@ import numpy as np
 
 dispW=640
 dispH=480
-flip=2
-camSet='nvarguscamerasrc !  video/x-raw(memory:NVMM), width=3264, height=2464, format=NV12, framerate=21/1 ! nvvidconv flip-method='+str(flip)+' ! video/x-raw, width='+str(dispW)+', height='+str(dispH)+', format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink'
+flip=0
+camSet='nvarguscamerasrc !  video/x-raw(memory:NVMM), width=1280, height=720, format=NV12, framerate=120/1 ! nvvidconv flip-method='+str(flip)+' ! video/x-raw, width='+str(dispW)+', height='+str(dispH)+', format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink'
 cam= cv2.VideoCapture(camSet)
 
 #Or, if you have a WEB cam, uncomment the next line
@@ -16,7 +16,7 @@ cv2.namedWindow("cameraFeed")
 cv2.moveWindow("cameraFeed",0,0)
 
 cv2.namedWindow("maskOutput")
-cv2.moveWindow("maskOutput",650,0)
+cv2.moveWindow("maskOutput",850,0)
 
 # Hue 0-179
 cv2.createTrackbar("h","cameraFeed",0,179,lambda x:None)
