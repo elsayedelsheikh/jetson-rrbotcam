@@ -7,7 +7,9 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclpy REQUIRED)
 find_package(rclcpp_lifecycle REQUIRED)
 find_package(rrbot_cam_msgs REQUIRED)
 find_package(control_msgs REQUIRED)
@@ -37,6 +39,13 @@ install(TARGETS
 )
 
 install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
+
+## Install Python modules
+ament_python_install_package(${PROJECT_NAME})
+install(PROGRAMS
+  scripts/joint_trajectory_controller_tester.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

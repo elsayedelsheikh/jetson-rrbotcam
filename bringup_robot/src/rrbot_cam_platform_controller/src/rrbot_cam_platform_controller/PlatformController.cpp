@@ -98,10 +98,10 @@ PlatformController::control_cycle()
   if (last_command_ == nullptr || (now() - last_command_ts_) > std::chrono::milliseconds(100)) {
     command_msg.points[0].positions[0] = 0.0;
     command_msg.points[0].positions[1] = 0.0;
-    command_msg.points[0].velocities[0] = 0.1;
-    command_msg.points[0].velocities[1] = 0.1;
-    command_msg.points[0].accelerations[0] = 0.1;
-    command_msg.points[0].accelerations[1] = 0.1;
+    // command_msg.points[0].velocities[0] = 0.1;
+    // command_msg.points[0].velocities[1] = 0.1;
+    // command_msg.points[0].accelerations[0] = 0.1;
+    // command_msg.points[0].accelerations[1] = 0.1;
     command_msg.points[0].time_from_start = rclcpp::Duration(std::chrono::milliseconds(1000));
   } else {
     double control_pan = pan_pid_.compute(last_command_->pan);
@@ -110,10 +110,10 @@ PlatformController::control_cycle()
     command_msg.points[0].positions[0] = last_state_->actual.positions[0] - control_pan;
     command_msg.points[0].positions[1] = last_state_->actual.positions[1] - control_tilt;
 
-    command_msg.points[0].velocities[0] = 0.5;
-    command_msg.points[0].velocities[1] = 0.5;
-    command_msg.points[0].accelerations[0] = 0.5;
-    command_msg.points[0].accelerations[1] = 0.5;
+    // command_msg.points[0].velocities[0] = 0.5;
+    // command_msg.points[0].velocities[1] = 0.5;
+    // command_msg.points[0].accelerations[0] = 0.5;
+    // command_msg.points[0].accelerations[1] = 0.5;
   }
 
   trajectory_pub_->publish(command_msg);
