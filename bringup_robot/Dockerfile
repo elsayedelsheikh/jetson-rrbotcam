@@ -7,10 +7,10 @@ WORKDIR $ROS_UNDERLAY/../src
 
 ## add packages
 ADD https://raw.githubusercontent.com/ros-controls/ros2_control/$BRANCH/ros2_control.$ROS_DISTRO.repos ros2_control.repos
-COPY rrbot_cam ./rrbot_cam
-COPY rrbot_cam_msgs ./rrbot_cam_msgs
-COPY rrbot_cam_platform_controller ./rrbot_cam_platform_controller
 RUN vcs import < ros2_control.repos
+COPY src/rrbot_cam ./rrbot_cam
+COPY src/rrbot_cam_msgs ./rrbot_cam_msgs
+COPY src/rrbot_cam_platform_controller ./rrbot_cam_platform_controller
 
 ## install dependencies
 RUN apt-get update && \
