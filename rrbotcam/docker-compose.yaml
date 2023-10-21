@@ -1,0 +1,18 @@
+version: "3"
+services:
+  bringup:
+    image:  elsayedelsheikh/jetson-rrbotcam-bringup-robot:latest
+    network_mode: "host"
+    devices:
+    - "/dev/ttyUSB0:/dev/ttyUSB0"
+    command: ros2 launch rrbot_cam rrbot.launch.py
+
+  foxglove-websocket:
+    image:  elsayedelsheikh/jetson-rrbotcam-bringup-robot:latest
+    network_mode: "host"
+    command: ros2 launch rosbridge_server rosbridge_websocket_launch.xml
+
+  foxglove-self-hosted:
+    image: ghcr.io/foxglove/studio:latest
+    ports:
+      - "8080:8080"
