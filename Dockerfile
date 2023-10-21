@@ -14,6 +14,7 @@ COPY src/rrbot_cam_platform_controller ./rrbot_cam_platform_controller
 
 ## install dependencies
 RUN apt-get update && \
+    apt install ros-${ROS_DISTRO}-foxglove-bridge && \
     rosdep update && \
     rosdep install -iy --from-paths . && \
     rm -rf /var/lib/apt/lists/
