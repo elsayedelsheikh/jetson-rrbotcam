@@ -1,0 +1,4 @@
+version: "3"
+services:
+  bringup:
+    image:  elsayedelsheikh/jetson-rrbotcam-bringup-robot:latest
