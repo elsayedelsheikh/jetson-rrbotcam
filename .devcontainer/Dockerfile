@@ -1,10 +1,8 @@
 ARG ROS_DISTRO="humble"
+ARG USERNAME=ros
 FROM althack/ros2:$ROS_DISTRO-dev 
 
 ENV DEBIAN_FRONTEND=noninteractive
-
-ENV ROS_UNDERLAY /ros2_control_ws
-WORKDIR $ROS_UNDERLAY/src
 
 # Use Cyclone DDS as middleware
 # Install foxglove-bridge for remote visualization
@@ -14,33 +12,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
-## add ros2_control packages
-# ADD https://raw.githubusercontent.com/ros-controls/ros2_control/$ROS_DISTRO/ros2_control.$ROS_DISTRO.repos ros2_control.repos
-# RUN vcs import < ros2_control.repos
-# COPY src/rrbot_cam ./rrbot_cam
-# COPY src/rrbot_cam_msgs ./rrbot_cam_msgs
-# COPY src/rrbot_cam_platform_controller ./rrbot_cam_platform_controller
-# ## install dependencies
-# RUN apt-get update \
-#     && rosdep update \
-#     && rosdep install -iy --from-paths . \
-#    # Clean up
-#    && apt-get autoremove -y \
-#    && apt-get clean -y \
-#    && rm -rf /var/lib/apt/lists/*
-## compile
-# RUN cd $ROS_UNDERLAY \
-#     && . /opt/ros/${ROS_DISTRO}/setup.sh \
-#     && colcon build --symlink-install
-
-## source entrypoint setup
-# RUN sed --in-place --expression \
-#       '$isource "$ROS_UNDERLAY/install/setup.bash"' \
-#       /ros_entrypoint.sh
-
 ## install moveit2 binaries
 RUN apt-get update \
-   && apt-get -y install --no-install-recommends ros-$ROS_DISTRO-moveit \
+   && apt-get -y install --no-install-recommends \
+   ros-$ROS_DISTRO-moveit \
+   ros-$ROS_DISTRO-moveit-planners* \
+   ros-$ROS_DISTRO-moveit-ros-move-group \
+   ros-$ROS_DISTRO-moveit-ros-control* \
+   ros-$ROS_DISTRO-joy \
    # Clean up
    && apt-get autoremove -y \
    && apt-get clean -y \
@@ -57,7 +36,21 @@ RUN apt-get update \
    && apt-get clean -y \
    && rm -rf /var/lib/apt/lists/*
 
+## install dependencies
+RUN apt-get update \
+   && apt-get -y install --no-install-recommends \
+   libserial-dev \
+   ros-$ROS_DISTRO-joint-state-publisher-gui \
+   ros-$ROS_DISTRO-vision-msgs \
+   ros-$ROS_DISTRO-cv-bridge \
+   ros-$ROS_DISTRO-ros2-controllers-test-nodes \
+   # Clean up
+   && apt-get autoremove -y \
+   && apt-get clean -y \
+   && rm -rf /var/lib/apt/lists/*
 
+## Add user to dialout group to access serial ports
+RUN groupadd -f dialout && usermod -aG dialout ros
 
 ENV DEBIAN_FRONTEND=dialog
 

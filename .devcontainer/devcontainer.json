@@ -13,10 +13,10 @@
 		"--cap-add=SYS_PTRACE",
 		"--security-opt=seccomp:unconfined",
 		"--security-opt=apparmor:unconfined",
+		"--device=/dev/ttyUSB0",
+		"--ipc=host"
 		// "--volume=/tmp/.X11-unix:/tmp/.X11-unix",
 		// "--volume=/mnt/wslg:/mnt/wslg",
-		"--ipc=host"
-		// uncomment to use intel iGPU
 		// "--device=/dev/dri"
 	],
 	// "containerEnv": {
