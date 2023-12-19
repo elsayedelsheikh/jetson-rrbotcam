@@ -4,11 +4,14 @@
 #ifdef USE_SERVOS
 #include <Servo.h>
 
-#define tilServoPin 10  // Servo #1
-#define panServoPin 9   // Servo #2
+#define panServoPin 10  // Servo #1
+#define tilServoPin 9  // Servo #2
 
-int tiltMaxLim = 90;
 int tiltMinLim = 10;
+int tiltMaxLim = 110;
+
+int panMinLim = 0;
+int panMaxLim = 180;
 
 Servo panServo;
 Servo tilServo;
